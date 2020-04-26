@@ -7,47 +7,54 @@ section .text
         mov ax, 0000h
 ;Sumando numeros    
 
-        add ax, 2d
-        add ax, 1d
-        add ax, 1d
-        add ax, 1d
-        add ax, 7d
-        ; dando valor al total de numeros
-        mov cl, 5d
-        ;dividiendo ax/cl (12/5)
-        div cl
-        ;resultado es: Cociente 2 Residuo 2
-        ;Necesitamos cociente
-        ;A u n   s e   p a s a
-        ;1 2 3 4 5 6 7 8 9 A B 
+    add ax, 2d
+    add ax, 1d
+    add ax, 1d
+    add ax, 1d
+    add ax, 7d
+    ; dando valor al total de numeros
+    mov cl, 5d
+    ;dividiendo ax/cl (12/5)
+    div cl
+    ;resultado es: Cociente 2 Residuo 2
+    ;Necesitamos cociente
+    ;A u n   s e   p a s a
+    ;1 2 3 4 5 6 7 8 9 A B 
 
-        mov di ,0d
-        mov cx ,[len]
-
-comprobar: cmp al,0002h
-
-lupi:   mov bl,[comnt2+di]
+    mov di ,0d
+    mov cx,000h
+    mov cx ,[len]
+    lupi:  
+        mov bl,[comnt+di]
         mov [di+200h],  bl
         inc di
-        loop lupi
-        int 20h
-
+        sub cx,1
+    loop lupi
+    int 20h
 ;comprobamos que el cociente sea 2
-      
 section .data
-    
-    comnt2 db "Aun se pasa"
-    len equ $-comnt2
-
-
+    comnt db "Aun se pasa"
+    len equ $-comnt
   
 ;Ejercicio 2
 ;El presidente Bayib Nukele, de un país ficticio, necesita presentar datos de una proyección de casos de la pandemia COVID-19, para lo cual su equipo de expertos ha encontrado la maravillosa y precisa formula precisa: “comenzando con dos casos el día uno, cada tres días se duplica el número”. Usted es el encargado de las gráficas, tiene que dejar una buena impresión. De manera dinámica, coloque 11 estimaciones partiendo del día 3, de tres en tres es decir primera celda día 3, segunda día 6, y así; una estimación por cada una o dos celdas de memoria, desde la celda 210h llenando toda la fila, cuando pase de 255 necesitará usar dos celdas de memoria para guardar el número.
+        mov     ax, 0000h
+        mov     al, 2d
+        mov     bx, 210h
+        mov     cx, 2d
+est:    mul     cx
+        mov     [bx], ax
+        cmp     ah, 00h
+        ja      two
+        je      one
+two:    add     bx, 2h
+        jmp     sig
+one:    add     bx, 1h
+sig:    cmp     bx, 21Fh
+        jb      est
 
 
 
-
-int 20h
 
 
 
