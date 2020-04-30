@@ -1,5 +1,11 @@
 # AC_00121117
 
+# comandos
+
+nasm -f bin 3.asm -o T3_2.COM
+
+bosbox .
+
 #Tarea 2
 La tarea consiste en 3 ejercicios, que serán entregados un solo archivo, con nombre tarea_n_carnet.asm donde n es el número de la tarea y carnet es su carnet. Tendrán que subirlo a un repositorio del VCS de su preferencia (e.g. GitHub), el nombre del repositorio será AC_carnet donde carnet es su carnet; Los exhorto a no realizar un solo commit final, sino que progresivamente vayan marcando su progreso con commits bien documentados. Este será el repositorio donde subiremos todos nuestros archivos de tareas de laboratorio, trátenlo bien.
 
