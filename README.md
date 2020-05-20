@@ -1,10 +1,16 @@
 # AC_00121117
 
-# comandos
+# Comandos
+nasm -f bin <nombre>.asm -o <nombre>.com
 
-nasm -f bin 3.asm -o T3_2.COM
+nasm -f bin tarea_n_00121117.asm -o TN.COM
 
 bosbox .
+
+# Generalidades
+
+La tarea consiste en un solo ejercicio, que será entregado con el archivo del código fuente y con una imagen del resultado, el archivo con nombre tarea_n_carnet.asm donde n es el número de la tarea y carnet es su carnet; Tendrán que subir ambos en el mismo repositorio que crearon la tarea pasada, sería óptimo que hicieran una carpeta por cada tarea para mayor orden; Los exhorto a no realizar un solo commit final, sino que progresivamente vayan marcando su progreso con commits bien documentados. De nuevo, este será el repositorio donde subiremos todos nuestros archivos de tareas de laboratorio, trátenlo bien.
+
 
 # Tarea 2
 La tarea consiste en 3 ejercicios, que serán entregados un solo archivo, con nombre tarea_n_carnet.asm donde n es el número de la tarea y carnet es su carnet. Tendrán que subirlo a un repositorio del VCS de su preferencia (e.g. GitHub), el nombre del repositorio será AC_carnet donde carnet es su carnet; Los exhorto a no realizar un solo commit final, sino que progresivamente vayan marcando su progreso con commits bien documentados. Este será el repositorio donde subiremos todos nuestros archivos de tareas de laboratorio, trátenlo bien.
@@ -44,3 +50,9 @@ Escriba de manera dinámica los primeros 16 números de la sucesión de Fibonacc
 
 para n>1
 Resultado esperado 
+
+# Tarea 3
+
+Definición formal
+
+Para que comiencen a familiarizarse con el concepto de las interrupciones, en especial el Modo Texto y su disposición de 80x25 posiciones, vamos a escribir tres líneas de texto en la pantalla, a manera de haiku, el contenido de estos versos está a su discreción, es ideal que no se repitan los mensajes, exploten su creatividad; la posición de cada línea tiene la condición que no pueden iniciar en la misma columna que otra línea y las filas en las que se encuentren deben tener distancia entre sí.
