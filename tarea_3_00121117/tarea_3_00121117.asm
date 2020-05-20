@@ -85,8 +85,8 @@ loop2:	mov 	cl, [msg2+di-05d]
         call    fila2
 	ret
 
-texto3:	mov 	di, 40d
-loop3:	mov 	cl, [msg3+di-40d]
+texto3:	mov 	di, 30d
+loop3:	mov 	cl, [msg3+di-30d]
 	call    m_cursr
 	call 	w_char
 	inc		di
@@ -97,9 +97,9 @@ loop3:	mov 	cl, [msg3+di-40d]
 
 
 section .data
-msg1	db 	""
+msg1	db 	"que hace una abeja en un gimnasio?"
 len1 	equ	$-msg1+20d
-msg2	db 	""
+msg2	db 	"que?"
 len2 	equ	$-msg2+05d
-msg3	db 	""
-len3 	equ	$-msg3+40d
+msg3	db 	"zumba"
+len3 	equ	$-msg3+30d
