@@ -1,90 +1,80 @@
 org 100h
 section .text
-
-init:                   ;comenzamos con el mensaje inicial
+clearall:           
+    mov al, 0d
+    mov [400h], al
+    mov [401h], al
+    mov [402h], al
+    mov [403h], al
+    mov [404h], al
+    mov [405h], al
+    mov [406h], al
+    mov [407h], al
+    mov [408h], al
+    mov [409h], al
+    mov [40Ah], al
+init:                  
     call texto 
     mov bl, 00001110b 
     mov dl, 3h 
     mov bp, msgDos 
     mov si, lenDos
     call w_strng
-
-
-First:                      ;funcion donde pedimos primer dato
+Primero:                      
     xor si, si
     mov al, 0d
     call input 
     mov [400h], al
     sub     al, 30h
     mov [500h], al
-    mov si, 05h
-    mov bl, 00101110b ;atributos amarillo:1110 verde:0010
-    mov dl, 30h ; columna inicial
-    mov bp, 400h ; casilla inicial
+    call color
     call w_strng    
-Second:    
-    mov al, 0d                 ;funcion donde pedimos el segundo dato
-    call input              ;pedimos el dato
+Segundo:    
+    mov al, 0d                 
+    call input             
     mov [401h], al
     sub     al, 30h
     mov [501h], al
-    mov si, 09h
-    mov bl, 00101110b ;atributos amarillo:1110 verde:0010
-    mov dl, 30h ; columna inicial
-    mov bp, 400h ; casilla inicial            
+    call color
     call w_strng     
 
- Third: 
+ Tercero: 
     mov al, 0d                   
-    call input              ;pedimos el dato
+    call input              
     mov [402h], al
     sub     al, 30h
     mov [502h], al
-    mov si, 09h
-    mov bl, 00101110b ;atributos amarillo:1110 verde:0010
-    mov dl, 30h ; columna inicial
-    mov bp, 400h ; casilla inicial           
-    call w_strng   
-
-Fourth:                    
+    call color
+    call w_strng  
+Cuarto:                    
     mov al, 0d
-    call input              ;pedimos el dato
+    call input              
     mov [403h], al 
     sub     al, 30h
-    mov [503h], al   
-    mov si, 09h
-    mov bl, 00101110b ;atributos amarillo:1110 verde:0010
-    mov dl, 30h ; columna inicial
-    mov bp, 400h ; casilla inicial             
-    call w_strng   
-
-fiveth:  
+    mov [503h], al 
+    call color
+    call w_strng 
+Quinto:  
     mov al, 0d
     call input              ;pedimos el dato
     mov [404h], al
     sub     al, 30h
     mov [504h], al
     call clear
-    mov si, 09h
-    mov bl, 00101110b ;atributos amarillo:1110 verde:0010
-    mov dl, 30h ; columna inicial
-    mov bp, 400h ; casilla inicial            
-    call w_strng   
-
-
-
+    call color
+    call w_strng 
 calc:                      
     call validateS  
-    call avgprev
-    call avg
+    call limpiar
+    call promedio
     call mostrar
-avgprev:mov     bx, 0000h
-        mov     ax, 0000h
-
-avg:    add     al, [500h+bx]
+limpiar:
+    mov     bx, 0000h
+    mov     ax, 0000h
+promedio:    add     al, [500h+bx]
         inc     bx
         cmp     bx, 05h
-        jb      avg
+        jb      promedio
         mov     [510h], al
         mov     [520h], bl
         mov     cl, bl
@@ -115,40 +105,45 @@ mostrar:
     je      txt1
 txt0:	
     mov 	dx, msg0
-    jmp     comm
+    jmp     comentario
 txt9:
 	mov 	dx, msg9
-    jmp     comm
+    jmp     comentario
 txt8:
 	mov 	dx, msg8
-    jmp     comm
+    jmp     comentario
 txt7:
 	mov 	dx, msg7
-    jmp     comm
+    jmp     comentario
 txt6:
 	mov 	dx, msg6
-    jmp     comm
+    jmp     comentario
 txt5:
 	mov 	dx, msg5
-    jmp     comm
+    jmp     comentario
 txt4:
 	mov 	dx, msg4
-    jmp     comm
+    jmp     comentario
 txt3:	
     mov 	dx, msg3
-    jmp     comm
+    jmp     comentario
 txt2:	
     mov 	dx, msg2
-    jmp     comm
+    jmp     comentario
 txt1:
 	mov 	dx, msg1
-    jmp     comm
+    jmp     comentario
 	
-comm:   
+comentario:   
     call 	w_strng2
 	call 	kb	; solo detenemos la ejecución
 	int 	20h
-
+color:
+    mov si, 05h
+    mov bl, 00101110b 
+    mov dl, 30h 
+    mov bp, 400h
+    ret 
 input:
     call kb
     xor si, si
@@ -170,7 +165,6 @@ fail:
     call w_strng
     call input
 finish: ret
-
 clear:
     mov bl, 00000000b 
     mov dl, 3h 
@@ -178,7 +172,6 @@ clear:
     mov si, lenDos
     call w_strng
     ret
-
 validateS:
     mov bl, 00000100b 
     mov dl, 3h 
@@ -190,14 +183,11 @@ validateS:
     jne validateS
     call clear
     ret
- 
 texto: 
     mov ah, 00h
     mov al, 03h
     int 10h
     ret
-
-
 kb: 
     mov ah, 00h 
     int 16h 
