@@ -1,5 +1,5 @@
 org 	100h
-
+; C de Cordova 
 section .text
 
 	call 	grafico	
